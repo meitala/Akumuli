@@ -445,7 +445,7 @@ aku_Status Storage::_write_impl(TimeSeriesValue &ts_value, aku_MemRange data) {
                             active_volume_->flush();
                             break;
                         case AKU_DURABILITY_SPEED_TRADEOFF:
-                            // Compromice some durability for speed
+                            // Compromise some durability for speed
                             if ((merge_lock % 8) == 1) {
                                 active_volume_->flush();
                             }

@@ -348,7 +348,7 @@ struct RunIter<std::shared_ptr<TRun>, AKU_CURSOR_DIR_FORWARD> {
 template<class TRun>
 struct RunIter<std::shared_ptr<TRun>, AKU_CURSOR_DIR_BACKWARD> {
     typedef boost::iterator_range<typename TRun::const_reverse_iterator> range_type;
-    typedef typename TRun::value_type value_type;
+    typedef typename TRun::value_type value_type; // Shouldn't we use element_type, as value_type is deprecated?
     static range_type make_range(std::shared_ptr<TRun> const& run) {
         return boost::make_iterator_range(run->rbegin(), run->rend());
     }

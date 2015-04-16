@@ -71,7 +71,7 @@ size_t CompressionUtil::compress_doubles(std::vector<double> const& input,
             nblocks = 0;
         }
         stream.add4bits(nblocks);
-        for (int i = (nblocks + 1); i --> 0;) {
+        for (int i = (nblocks + 1); i-- > 0;) {
             stream.add4bits(diff & 0xF);
             diff >>= 4;
         }
@@ -323,7 +323,7 @@ bool reorder_chunk_header(ChunkHeader const& header, ChunkHeader* out, Fn const&
     for (auto i = 0u; i < header.timestamps.size(); i++) {
         index.push_back(i);
     }
-    std::stable_sort(index.begin(), index.end(), f);
+    std::stable_sort(index.begin(), index.end(), f); //Sorting paramids and timestamaps vectors in acceding order
     out->lengths.reserve(index.size());
     out->offsets.reserve(index.size());
     out->paramids.reserve(index.size());
